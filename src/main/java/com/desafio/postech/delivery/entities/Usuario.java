@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.desafio.postech.delivery.enums.TipoUsuario;
 import com.desafio.postech.delivery.infra.converters.TipoUsuarioConverter;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Usuario {
 	@Convert(converter = TipoUsuarioConverter.class)
 	private TipoUsuario tipoUsuario;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	
@@ -71,4 +72,32 @@ public class Usuario {
 		return endereco;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	public void setDataUltimaAlteracao(LocalDateTime dataAlteracao) {
+		this.dataUltimaAlteracao = dataAlteracao;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
 }

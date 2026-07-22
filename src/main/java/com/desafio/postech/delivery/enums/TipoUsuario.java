@@ -1,13 +1,13 @@
 package com.desafio.postech.delivery.enums;
 
-import com.desafio.postech.delivery.infra.exceptions.TipoNaoExistenteException;
+import com.desafio.postech.delivery.infra.exceptions.RecursoNaoEncontradoException;
 
 public enum TipoUsuario {
 	
 	DONO(1, "Dono"),
 	CLIENTE(2, "Cliente");
 	
-	private int codigo;
+	private Integer codigo;
 	private String descricao;
 	
 	private TipoUsuario(int codigo, String descricao) {
@@ -15,16 +15,20 @@ public enum TipoUsuario {
 		this.descricao = descricao;
 	}
 	
-	public static TipoUsuario fromCodigo(int codigo) {
+	public static TipoUsuario fromCodigo(Integer codigo) {
+		if (codigo == null) {
+			return null;
+		}
+		
 		for (TipoUsuario tipo : TipoUsuario.values()) {
-			if (tipo.getCodigo() == codigo) {
+			if (tipo.getCodigo().equals(codigo)) {
 				return tipo;
 			}
 		}
-		throw new TipoNaoExistenteException("Código de tipo de usuário inválido: " + codigo);
+		throw new RecursoNaoEncontradoException("Código de tipo de usuário inválido: " + codigo);
 	}
 	
-	public int getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 

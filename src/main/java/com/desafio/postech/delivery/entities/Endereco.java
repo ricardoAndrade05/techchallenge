@@ -1,5 +1,7 @@
 package com.desafio.postech.delivery.entities;
 
+import com.desafio.postech.delivery.dtos.EnderecoDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,14 @@ public class Endereco {
 
 	public Endereco() {
 		
+	}
+
+	public Endereco(EnderecoDTO endereco) {
+		this.logradouro = endereco.logradouro();
+		this.numero = endereco.numero();
+		this.cidade = endereco.cidade();
+		this.estado = endereco.estado();
+		this.cep = endereco.cep();
 	}
 
 	public Long getId() {
@@ -49,6 +59,24 @@ public class Endereco {
 		return cep;
 	}
 
-	
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 	
 }
