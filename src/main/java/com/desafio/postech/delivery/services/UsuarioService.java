@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ import com.desafio.postech.delivery.repositories.UsuarioRepository;
 @Service
 public class UsuarioService {
     
+	private static final String STRING_VAZIA = "";
 	private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder; 
@@ -35,8 +38,20 @@ public class UsuarioService {
     }
 
     @Transactional(readOnly = true)
-    public UsuarioConsultaDTO getUsuarioById(Long id) {
-        return usuarioMapper.toDTO(usuarioRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente")));
+    public UsuarioConsultaDTO recuperaUsuarioPorId(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));
+		return usuarioMapper.toDTO(usuario);
+    }
+    
+    @Transactional(readOnly = true)
+    public Page<UsuarioConsultaDTO> buscaUsuariosPorNome(String nome, Pageable pageable) {
+    	Page<UsuarioConsultaDTO> usuariosDTO;
+    	if (STRING_VAZIA.equals(nome)) {
+			usuariosDTO = usuarioRepository.findAll(pageable).map(usuarioMapper::toDTO);
+		} else {
+			usuariosDTO = usuarioRepository.buscaUsuariosPorNome(nome,pageable).map(usuarioMapper::toDTO);
+		}
+        return usuariosDTO;
     }
 
     @Transactional
@@ -63,6 +78,7 @@ public class UsuarioService {
         usuarioRepository.delete(usuario);
     }
     
+    @Transactional
     public void atualizaSenha(Long id, UsuarioAtualizaSenhaDTO dto) {
     	Usuario usuario =usuarioRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));
     	boolean senhaValida = passwordEncoder.matches(dto.senhaAtual(), usuario.getSenha());
