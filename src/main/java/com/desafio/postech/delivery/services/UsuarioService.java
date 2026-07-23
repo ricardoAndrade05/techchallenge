@@ -31,7 +31,7 @@ public class UsuarioService {
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder; 
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper,PasswordEncoder passwordEncoder) {
+    UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper,PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
         this.passwordEncoder = passwordEncoder;
@@ -56,7 +56,8 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioConsultaDTO novoUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+    	validaEmailUnico(usuarioDTO.email());
+    	Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
         usuario.setDataUltimaAlteracao(LocalDateTime.now());
         String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
@@ -66,6 +67,7 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioConsultaDTO atualizaUsuario(Long id, UsuarioAtualizaDTO usuarioDTO) {
+    	validaEmailUnico(usuarioDTO.email());
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));
         atualizaCampos(usuario, usuarioDTO);
         usuario = usuarioRepository.save(usuario);
@@ -124,4 +126,13 @@ public class UsuarioService {
         }
         return false;
     }
+    
+	private void validaEmailUnico(String email) {
+		if (email != null) {
+			boolean emailJaCadastrado = usuarioRepository.existsByEmail(email);
+			if (emailJaCadastrado) {
+				throw new RegraDeNegociosException("O e-mail informado já está cadastrado.");
+			}
+		}
+	}
 }

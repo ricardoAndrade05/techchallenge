@@ -6,6 +6,7 @@ import com.desafio.postech.delivery.enums.TipoUsuario;
 import com.desafio.postech.delivery.infra.converters.TipoUsuarioConverter;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +24,10 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nome;
+	@Column(unique = true, nullable = false)
 	private String email;
+	
+	private String nome;
 	private String login;
 	private String senha;
 	private LocalDateTime dataUltimaAlteracao;
