@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.desafio.postech.delivery.dtos.UsuarioAtualizaDTO;
+import com.desafio.postech.delivery.dtos.UsuarioAtualizaSenhaDTO;
 import com.desafio.postech.delivery.dtos.UsuarioConsultaDTO;
 import com.desafio.postech.delivery.dtos.UsuarioDTO;
-import com.desafio.postech.delivery.entities.Usuario;
 import com.desafio.postech.delivery.services.UsuarioService;
 
 @RestController
@@ -30,22 +30,28 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
-		Usuario usuario =usuarioService.getUsuarioById(id);
+	public ResponseEntity<UsuarioConsultaDTO> getUsuarioById(@PathVariable Long id) {
+		UsuarioConsultaDTO usuario =usuarioService.getUsuarioById(id);
 		return ResponseEntity.ok().body(usuario);
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsuarioConsultaDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-		UsuarioConsultaDTO novoUsuario = usuarioService.novoUsuario(usuarioDTO);
+	public ResponseEntity<UsuarioConsultaDTO> createUsuario(@RequestBody UsuarioDTO dto) {
+		UsuarioConsultaDTO novoUsuario = usuarioService.novoUsuario(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(novoUsuario.id()).toUri();
 		return ResponseEntity.created(uri).body(novoUsuario);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioConsultaDTO> updateUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaDTO usuarioDTO){
-		UsuarioConsultaDTO usuarioAtualizado = usuarioService.atualizaUsuario(id, usuarioDTO);
+	public ResponseEntity<UsuarioConsultaDTO> updateUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaDTO dto){
+		UsuarioConsultaDTO usuarioAtualizado = usuarioService.atualizaUsuario(id, dto);
 		return ResponseEntity.ok().body(usuarioAtualizado);
+	}
+	
+	@PutMapping("/atualiza-senha/{id}")
+	public ResponseEntity<?> updateSenhaUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaSenhaDTO dto){
+		usuarioService.atualizaSenha(id, dto);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@DeleteMapping("/{id}")
