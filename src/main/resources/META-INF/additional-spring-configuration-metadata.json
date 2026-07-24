@@ -8,5 +8,10 @@
     "name": "application.jwt.private.key",
     "type": "java.lang.String",
     "description": "Caminho da chave privada RSA (.key) utilizada pela aplicação para assinar os Tokens JWT emitidos no login.'"
+  },
+  {
+    "name": "application.jwt.expiration",
+    "type": "java.lang.String",
+    "description": "Tempo de duração do token JWT em segundos"
   }
 ]}

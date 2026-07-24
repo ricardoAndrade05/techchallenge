@@ -5,6 +5,7 @@ spring:
     active: ${PROFILE:local}
 application:
   jwt:
+    expiration: ${JWT_EXPIRATION:600}
     public:
       key: ${JWT_PUBLIC_KEY:classpath:app.pub}
     private:

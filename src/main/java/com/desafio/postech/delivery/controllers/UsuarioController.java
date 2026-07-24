@@ -28,6 +28,8 @@ import com.desafio.postech.delivery.dtos.UsuarioConsultaDTO;
 import com.desafio.postech.delivery.dtos.UsuarioDTO;
 import com.desafio.postech.delivery.services.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("v1/usuarios")
 public class UsuarioController {
@@ -63,21 +65,21 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsuarioConsultaDTO> createUsuario(@RequestBody UsuarioDTO dto) {
+	public ResponseEntity<UsuarioConsultaDTO> createUsuario(@Valid @RequestBody UsuarioDTO dto) {
 		UsuarioConsultaDTO novoUsuario = usuarioService.novoUsuario(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(novoUsuario.id()).toUri();
 		return ResponseEntity.created(uri).body(novoUsuario);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioConsultaDTO> updateUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaDTO dto){
+	public ResponseEntity<UsuarioConsultaDTO> updateUsuario(@PathVariable Long id,@Valid @RequestBody UsuarioAtualizaDTO dto){
 		UsuarioConsultaDTO usuarioAtualizado = usuarioService.atualizaUsuario(id, dto);
 		return ResponseEntity.ok().body(usuarioAtualizado);
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PutMapping("/atualiza-senha/{id}")
-	public ResponseEntity<?> updateSenhaUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaSenhaDTO dto){
+	public ResponseEntity<?> updateSenhaUsuario(@PathVariable Long id,@Valid @RequestBody UsuarioAtualizaSenhaDTO dto){
 		usuarioService.atualizaSenha(id, dto);
 		return ResponseEntity.noContent().build();
 	}

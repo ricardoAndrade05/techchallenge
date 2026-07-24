@@ -1,5 +1,6 @@
 package com.desafio.postech.delivery.services;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,14 @@ import com.desafio.postech.delivery.repositories.UsuarioRepository;
 @Service
 public class AutenticacaoService {
 
+    @Value("${application.jwt.expiration}")
+    private Long tempoExpiracao;
+	
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
+    
+
 
     public AutenticacaoService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.usuarioRepository = usuarioRepository;
@@ -32,7 +38,7 @@ public class AutenticacaoService {
         }
         
         String token = tokenService.gerarToken(usuario);
-        long tempoExpiracaoSegundos = 3600L;
+        long tempoExpiracaoSegundos = 600L;
 
         return new LoginResponseDTO(token, tempoExpiracaoSegundos);
     }
