@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +38,22 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/me")
+    public ResponseEntity<UsuarioConsultaDTO> getMeuPerfil(@AuthenticationPrincipal Jwt jwt) {
+        String email = jwt.getClaimAsString("email");
+        UsuarioConsultaDTO dto = usuarioService.buscarPorEmail(email); 
+        return ResponseEntity.ok(dto);
+    }
+	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioConsultaDTO> buscaUsuarioPorId(@PathVariable Long id) {
 		UsuarioConsultaDTO usuario = usuarioService.recuperaUsuarioPorId(id);
 		return ResponseEntity.ok().body(usuario);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping
 	public ResponseEntity<Page<UsuarioConsultaDTO>> buscaUsuariosPorNome(
 			@RequestParam(defaultValue = "") String nome, 
@@ -62,12 +75,14 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usuarioAtualizado);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PutMapping("/atualiza-senha/{id}")
 	public ResponseEntity<?> updateSenhaUsuario(@PathVariable Long id, @RequestBody UsuarioAtualizaSenhaDTO dto){
 		usuarioService.atualizaSenha(id, dto);
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
 		usuarioService.excluiUsuario(id);

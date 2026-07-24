@@ -14,6 +14,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -102,5 +104,13 @@ public class Usuario {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
+	@PrePersist
+    @PreUpdate
+    private void ajustarEmail() {
+        if (this.email != null) {
+            this.email = this.email.toLowerCase().trim();
+        }
+    }
 	
 }

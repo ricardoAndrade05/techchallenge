@@ -44,6 +44,12 @@ public class UsuarioService {
     }
     
     @Transactional(readOnly = true)
+	public UsuarioConsultaDTO buscarPorEmail(String email) {
+		Usuario usuario = usuarioRepository.findByEmail(email.toLowerCase()).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));;
+		return usuarioMapper.toDTO(usuario);
+	}
+    
+    @Transactional(readOnly = true)
     public Page<UsuarioConsultaDTO> buscaUsuariosPorNome(String nome, Pageable pageable) {
     	Page<UsuarioConsultaDTO> usuariosDTO;
     	if (STRING_VAZIA.equals(nome)) {

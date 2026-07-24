@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "application.jwt.public.key",
+    "type": "java.lang.String",
+    "description": "Caminho da chave pública RSA (.pub) utilizada pelo Resource Server para validar a assinatura do Token JWT.'"
+  },
+  {
+    "name": "application.jwt.private.key",
+    "type": "java.lang.String",
+    "description": "Caminho da chave privada RSA (.key) utilizada pela aplicação para assinar os Tokens JWT emitidos no login.'"
+  }
+]}

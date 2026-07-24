@@ -1,5 +1,7 @@
 package com.desafio.postech.delivery.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,9 +15,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	boolean existsByEmail(String email);
 	
+	Optional<Usuario> findByEmail(String email);
+	
 	@Query("SELECT usuario "
 		 + "FROM Usuario usuario "
 		 + "WHERE UPPER(usuario.nome) LIKE UPPER(CONCAT('%',:nome,'%')) ")
 	Page<Usuario> buscaUsuariosPorNome(String nome, Pageable pageable);
+
+	
 	
 }

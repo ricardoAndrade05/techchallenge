@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.desafio.postech.delivery.dtos.ErroPadraoDTO;
 import com.desafio.postech.delivery.infra.exceptions.RecursoNaoEncontradoException;
 import com.desafio.postech.delivery.infra.exceptions.RegraDeNegociosException;
+import com.desafio.postech.delivery.infra.exceptions.AutenticacaoException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -28,6 +29,14 @@ public class ControllerHandler {
 	public ResponseEntity<ErroPadraoDTO> handlerRegraDeNegociosException(RegraDeNegociosException ex,HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		String erro = "Regra de Negócios.";
+		ErroPadraoDTO erroPadraoDTO = montaErroPadrao(status, erro, ex, request);
+		return ResponseEntity.status(status).body(erroPadraoDTO);
+	}
+	
+	@ExceptionHandler(AutenticacaoException.class)
+	public ResponseEntity<ErroPadraoDTO> handlerBadCredentialsException(AutenticacaoException ex,HttpServletRequest request) {
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		String erro = "Problemas de Autenticação";
 		ErroPadraoDTO erroPadraoDTO = montaErroPadrao(status, erro, ex, request);
 		return ResponseEntity.status(status).body(erroPadraoDTO);
 	}
