@@ -102,6 +102,9 @@ public class UsuarioService {
 
 	private void atualizaCampos(Usuario usuario, UsuarioAtualizaDTO dto) {
         boolean teveAtualizacao = false;
+        EnderecoDTO endDto = dto.endereco();
+        Endereco endereco = usuario.getEndereco();
+ 
         teveAtualizacao |= atualizarSeAlterado(dto.nome(), usuario::getNome, usuario::setNome);
         teveAtualizacao |= atualizarSeAlterado(dto.email(), usuario::getEmail, usuario::setEmail);
         teveAtualizacao |= atualizarSeAlterado(dto.login(), usuario::getLogin, usuario::setLogin);
@@ -109,8 +112,6 @@ public class UsuarioService {
             usuario.setTipoUsuario(TipoUsuario.fromCodigo(dto.tipoUsuario()));
             teveAtualizacao = true;
         }
-        EnderecoDTO endDto = dto.endereco();
-        Endereco endereco = usuario.getEndereco();
         if (endDto != null && endereco != null) {
             teveAtualizacao |= atualizarSeAlterado(endDto.logradouro(), endereco::getLogradouro, endereco::setLogradouro);
             teveAtualizacao |= atualizarSeAlterado(endDto.numero(), endereco::getNumero, endereco::setNumero);
@@ -126,7 +127,7 @@ public class UsuarioService {
     }
 
     private boolean atualizarSeAlterado(String novoValor, Supplier<String> obterValorAtual, Consumer<String> definirNovoValor) {
-        if (novoValor != null && !novoValor.equalsIgnoreCase(obterValorAtual.get())) {
+        if (!novoValor.equalsIgnoreCase(obterValorAtual.get())) {
             definirNovoValor.accept(novoValor);
             return true;
         }

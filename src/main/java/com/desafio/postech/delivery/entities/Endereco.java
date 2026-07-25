@@ -1,6 +1,6 @@
 package com.desafio.postech.delivery.entities;
 
-import com.desafio.postech.delivery.dtos.EnderecoNovoDTO;
+import com.desafio.postech.delivery.dtos.EnderecoDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class Endereco {
 		
 	}
 
-	public Endereco(EnderecoNovoDTO endereco) {
+	public Endereco(EnderecoDTO endereco) {
 		this.logradouro = endereco.logradouro();
 		this.numero = endereco.numero();
 		this.cidade = endereco.cidade();
