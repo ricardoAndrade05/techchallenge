@@ -10,6 +10,9 @@ import com.desafio.postech.delivery.dtos.LoginRequestDTO;
 import com.desafio.postech.delivery.dtos.LoginResponseDTO;
 import com.desafio.postech.delivery.services.AutenticacaoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 @RestController
@@ -22,6 +25,11 @@ public class AutenticacaoController {
         this.autenticacaoService = autenticacaoService;
     }
 
+	@Operation(summary = "Login", description = "Realiza o login do usuario")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuario logado com sucesso."),
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos."),
+    })
     @PostMapping
     public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginRequestDTO dto) {
         LoginResponseDTO response = autenticacaoService.autenticar(dto);
