@@ -1,0 +1,22 @@
+{
+	"id": "66b97c32-6908-4c8b-9bcd-5cfb485f7423",
+	"name": "TechChallenge - Delivery",
+	"values": [
+		{
+			"key": "LOCAL_HOST",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "JWT_TOKEN",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-07-30T16:11:19.053Z",
+	"_postman_exported_using": "Postman/12.21.6"
+}

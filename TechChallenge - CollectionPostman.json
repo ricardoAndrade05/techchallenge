@@ -1,0 +1,418 @@
+{
+  "info": {
+    "_postman_id": "c3e9d68d-c87f-433d-ac8d-49511e463e27",
+    "name": "TechChallenge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20724172"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "GET Usuario",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Busca por nome - Caso sucesso(nome vazio)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios?page=0&size=5&sort=nome,asc",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "nome,asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Busca por nome - Caso sucesso",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios?nome=an&page=0&size=5&sort=nome,asc",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "an"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "nome,asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Usuario - Caso Sucesso",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Usuario - Caso Sucesso",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"nome\": \"Ricardo Andrade\",\n    \"email\": \"Ricardo.Andrade@email.com\",\n    \"login\": \"ricardo.andrade\",\n    \"senha\": \"12345\",\n    \"tipoUsuario\": 1,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Flores\",\n        \"numero\": \"35\",\n        \"cidade\": \"Maringá\",\n        \"estado\": \"PR\",\n        \"cep\": \"87020-000\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Usuario - Campos obrigatórios faltando",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"nome\": \"\",\n    \"email\": null,\n    \"login\": \"\",\n    \"senha\": null,\n    \"tipoUsuario\": null,\n    \"endereco\": {\n        \"logradouro\": \"\",\n        \"numero\": null,\n        \"cidade\": \"\",\n        \"estado\": null,\n        \"cep\": \"\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Usuario - Caso Sucesso",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"nome\": \"Maria Pereira\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"48\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045-000\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Usuario Alterar Senha - Caso Sucesso",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"senhaAtual\": \"12345\",\n    \"senhaNova\": \"54321\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/atualiza-senha/3",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "atualiza-senha",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login - Sem cadastro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"Ricardo.Andrade@email.com\",\n    \"senha\": \"12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/login",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login - Com cadastro",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Converte a resposta recebida para JSON",
+                  "const response = pm.response.json();",
+                  "// Verifica se o token existe na resposta",
+                  "if (response.token) {",
+                  "    // Salva o token na variável de ambiente/coleção com o nome \"jwt_token\"",
+                  "    pm.environment.set(\"JWT_TOKEN\", response.token);",
+                  "    console.log(\"Token JWT salvo com sucesso!\");",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"joao.silva@email.com\",\n    \"senha\": \"12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/login",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
