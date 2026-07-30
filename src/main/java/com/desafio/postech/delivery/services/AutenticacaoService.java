@@ -20,8 +20,6 @@ public class AutenticacaoService {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     
-
-
     public AutenticacaoService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
