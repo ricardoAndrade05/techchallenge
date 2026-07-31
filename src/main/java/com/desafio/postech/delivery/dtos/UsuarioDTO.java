@@ -12,7 +12,7 @@ public record UsuarioDTO(
 		Long id,
 		
 		@NotBlank(message = "O nome é obrigatório.")
-		@Size(min=5,max=10, message = "O nome deve conter entre 2 e 100 caracteres")
+		@Size(min=5,max=100, message = "O nome deve conter entre 2 e 100 caracteres")
 		String nome,
 		
 		@NotBlank(message = "O e-mail é obrigatório.")
@@ -20,11 +20,11 @@ public record UsuarioDTO(
 		String email,
 		
 		@NotBlank(message = "O login é obrigatório.")
-		@Size(min=5,max=10, message = "O login deve conter entre 2 e 100 caracteres")
+		@Size(min=5,max=100, message = "O login deve conter entre 5 e 100 caracteres")
 		String login,
 		
 		@NotBlank(message = "A senha é obrigatório.")
-		@Size(min=5,max=10, message = "A senha deve conter entre 5 e 10 caracteres")
+		@Size(min=5,max=100, message = "A senha deve conter entre 5 e 10 caracteres")
 		String senha,
 		
 		@NotNull(message = "O tipo usuário é obrigatório.")

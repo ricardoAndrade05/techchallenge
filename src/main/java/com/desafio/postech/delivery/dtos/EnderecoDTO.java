@@ -8,14 +8,14 @@ import jakarta.validation.constraints.Size;
 public record EnderecoDTO(
 		
 		@NotBlank(message = "O logradouro é obrigatório.")
-		@Size(min=5,max=10, message = "O logradouro deve conter entre 5 e 100 caracteres")
+		@Size(min=5,max=100, message = "O logradouro deve conter entre 5 e 100 caracteres")
 		String logradouro,
 		
 		@NotBlank(message = "O número é obrigatório.")
 		String numero,
 		
 		@NotBlank(message = "A cidade é obrigatória.")
-		@Size(min=2,max=100, message = "A cidade deve conter entre 5 e 100 caracteres")
+		@Size(min=5,max=100, message = "A cidade deve conter entre 5 e 100 caracteres")
 		String cidade,
 		
 		@NotBlank(message = "O estado é obrigatório.")

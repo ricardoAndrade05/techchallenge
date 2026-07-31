@@ -1,8 +1,21 @@
 spring:
   application:
     name: tech-challenge-delivery
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/techchallenge_db}
+    username: ${DB_USERNAME:root} 
+    password: ${DB_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   profiles:
-    active: ${PROFILE:local}
+    active: ${PROFILE:default}
 application:
   jwt:
     expiration: ${JWT_EXPIRATION:600}
