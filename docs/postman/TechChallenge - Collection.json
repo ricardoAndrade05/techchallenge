@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "c3e9d68d-c87f-433d-ac8d-49511e463e27",
+    "_postman_id": "adda5fe0-a5b6-4d3c-8371-4b35e9ebb4e1",
     "name": "TechChallenge",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20724172"
@@ -187,7 +187,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{   \"nome\": \"Ricardo Andrade\",\n    \"email\": \"Ricardo.Andrade@email.com\",\n    \"login\": \"ricardo.andrade\",\n    \"senha\": \"12345\",\n    \"tipoUsuario\": 1,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Flores\",\n        \"numero\": \"35\",\n        \"cidade\": \"Maringá\",\n        \"estado\": \"PR\",\n        \"cep\": \"87020-000\"\n    }\n}",
+              "raw": "{\n  \"nome\": \"Ricardo Andrade\",\n  \"email\": \"Ricardo.Andrade@email.com\",\n  \"login\": \"ricardo.andrade\",\n  \"senha\": \"12345\",\n  \"tipoUsuario\": 1,\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores\",\n    \"numero\": \"35\",\n    \"cidade\": \"Maringá\",\n    \"estado\": \"PR\",\n    \"cep\": \"87020000\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"

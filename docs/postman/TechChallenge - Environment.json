@@ -1,5 +1,5 @@
 {
-	"id": "66b97c32-6908-4c8b-9bcd-5cfb485f7423",
+	"id": "14945663-2429-4a1f-9ecf-39831d3cd741",
 	"name": "TechChallenge - Delivery",
 	"values": [
 		{
@@ -17,6 +17,6 @@
 	],
 	"color": null,
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2026-07-30T16:11:19.053Z",
-	"_postman_exported_using": "Postman/12.21.6"
+	"_postman_exported_at": "2026-07-31T13:54:19.323Z",
+	"_postman_exported_using": "Postman/12.21.7"
 }
