@@ -136,7 +136,7 @@ public class UsuarioService {
     
 	private void validaEmailUnico(String email) {
 		if (email != null) {
-			boolean emailJaCadastrado = usuarioRepository.existsByEmail(email);
+			boolean emailJaCadastrado = usuarioRepository.existsByEmail(email.toLowerCase().trim());
 			if (emailJaCadastrado) {
 				throw new RegraDeNegociosException("O e-mail informado já está cadastrado.");
 			}

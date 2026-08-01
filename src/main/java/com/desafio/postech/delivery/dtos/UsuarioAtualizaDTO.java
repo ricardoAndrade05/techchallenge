@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 public record UsuarioAtualizaDTO(
 	
 		@NotBlank(message = "O nome é obrigatório.")
-		@Size(min=5,max=10, message = "O nome deve conter entre 2 e 100 caracteres")
+		@Size(min=5,max=100, message = "O nome deve conter entre 2 e 100 caracteres")
 		String nome,
 		
 		@NotBlank(message = "O e-mail é obrigatório.")
@@ -19,7 +19,7 @@ public record UsuarioAtualizaDTO(
 		String email,
 		
 		@NotBlank(message = "O login é obrigatório.")
-		@Size(min=5,max=10, message = "O login deve conter entre 2 e 100 caracteres")
+		@Size(min=5,max=100, message = "O login deve conter entre 2 e 100 caracteres")
 		String login,
 		
 		@NotNull(message = "O tipo usuário é obrigatório.")
