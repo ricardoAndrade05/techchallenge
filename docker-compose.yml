@@ -4,13 +4,40 @@ services:
     container_name: techchallenge_db
     restart: always
     environment:
-      POSTGRES_DB: techchallenge_db
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ${DB_NAME:-techchallenge_db}
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - techchallenge-net
+
+  app:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE_PATH:-dockerfile}
+    container_name: techchallenge_app
+    restart: always
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    environment:
+      DB_URL: ${DB_DRIVER_PREFIX:-jdbc:postgresql}://${DB_HOST:-postgres-db}:${DB_PORT:-5432}/${DB_NAME:-techchallenge_db}
+      DB_USERNAME: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      PROFILE: ${APP_PROFILE:-default}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-600}
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY:-classpath:app.pub}
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:-classpath:app.key}
+    depends_on:
+      - postgres-db
+    networks:
+      - techchallenge-net
 
 volumes:
   postgres_data:
+
+networks:
+  techchallenge-net:
+    driver: bridge
