@@ -1,3 +1,4 @@
+
 # 🛵 Tech Challenge - Delivery API
 
 API RESTful desenvolvida em **Spring Boot** para gerenciamento de pedidos e entregas, utilizando **PostgreSQL** containerizado e autenticação via **JWT (OAuth2 Resource Server)**.
@@ -39,7 +40,7 @@ Antes de começar, garanta que você possui instalado na sua máquina:
 Para subir o banco de dados PostgreSQL e a aplicação Spring Boot simultaneamente:
 
 # 1. Clone o repositório
-git clone git@github.com:ricardoAndrade05/techchallenge.git
+git clone git@github.com:ricardoAndrade05/techchallenge.git  
 cd techchallenge
 
 # 2. Suba todos os serviços containerizados
