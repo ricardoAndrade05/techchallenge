@@ -83,13 +83,6 @@
 		    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 		
-		<!-- Lombok -->
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <optional>true</optional>
-		</dependency>
-		
 		<!-- Postgresql -->
 		<dependency>
 		    <groupId>org.postgresql</groupId>
@@ -114,6 +107,11 @@
 	                        <version>1.6.3</version>
 	                    </path>
 	                </annotationProcessorPaths>
+					<compilerArgs>
+						<compilerArg>-Amapstruct.defaultInjectionStrategy=constructor</compilerArg>
+						<compilerArg>-Amapstruct.autowiredAnnotation=none</compilerArg>
+						<compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
+					</compilerArgs>
 	            </configuration>
 	        </plugin>
 			<plugin>
