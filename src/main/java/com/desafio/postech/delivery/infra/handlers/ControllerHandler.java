@@ -47,7 +47,7 @@ public class ControllerHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErroPadraoDTO> handlerMethodArgumentNotValid(MethodArgumentNotValidException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_CONTENT;
-		ErroValidacaoDTO err = new ErroValidacaoDTO(Instant.now(), status.value(), "Dados invalídos.", request.getRequestURI());
+		ErroValidacaoDTO err = new ErroValidacaoDTO(Instant.now(), status.value(), "Dados inválidos.", request.getRequestURI());
 		for (FieldError f : e.getBindingResult().getFieldErrors()) {
 			err.addErros(f.getField(), f.getDefaultMessage());
 		}

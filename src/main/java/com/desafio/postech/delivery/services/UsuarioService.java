@@ -73,8 +73,9 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioConsultaDTO atualizaUsuario(Long id, UsuarioAtualizaDTO usuarioDTO) {
-    	validaEmailUnico(usuarioDTO.email());
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Usuario inexistente"));
+		this.validaEmailUnicoComIdDiferente(usuarioDTO.email(), id);
         atualizaCampos(usuario, usuarioDTO);
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(usuario);
@@ -133,12 +134,21 @@ public class UsuarioService {
         }
         return false;
     }
-    
+
 	private void validaEmailUnico(String email) {
 		if (email != null) {
 			boolean emailJaCadastrado = usuarioRepository.existsByEmail(email.toLowerCase().trim());
 			if (emailJaCadastrado) {
 				throw new RegraDeNegociosException("O e-mail informado já está cadastrado.");
+			}
+		}
+	}
+
+	private void validaEmailUnicoComIdDiferente(String email, Long id) {
+		if (email != null) {
+			boolean emailJaCadastrado = usuarioRepository.existsByEmailAndIdNot(email.toLowerCase().trim(), id );
+			if (emailJaCadastrado) {
+				throw new RegraDeNegociosException("O e-mail já cadastrado para outro usuário.");
 			}
 		}
 	}
