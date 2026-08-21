@@ -1,0 +1,2169 @@
+{
+  "info": {
+    "_postman_id": "341cc98f-9767-45d0-8c4e-03064ffee91a",
+    "name": "TechChallenge",
+    "description": "Esta coleção reúne os principais endpoints da API TechChallenge Delivery, com foco nos fluxos de autenticação e gerenciamento de usuários.\n\nEla inclui requisições para cadastrar, consultar, atualizar, excluir e buscar usuários, além da operação de alteração de senha e dos cenários de login. A coleção também contém exemplos de respostas de sucesso e erro, permitindo validar o comportamento esperado da API em diferentes situações, como cadastro realizado com sucesso, dados inválidos, e-mail duplicado, falhas de autenticação e buscas com filtro.\n\nAs requisições estão organizadas em grupos funcionais:\n\n- **Usuarios**: operações de CRUD, busca e atualização de senha\n    \n- **Login**: cenários de autenticação com e sem cadastro prévio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10727864"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "GET Usuario",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sucesso consulta usuário",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 19 Aug 2026 18:04:36 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"nome\": \"Betina\",\n    \"email\": \"betina.somer@gmail.com\",\n    \"login\": \"betina.somer@gmail.com\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"dataUltimaAlteracao\": \"14/08/2026 14:19:36\",\n    \"endereco\": {\n        \"logradouro\": \"Estrada Selma Wallauer\",\n        \"numero\": \"1300\",\n        \"cidade\": \"Montenegro\",\n        \"estado\": \"RS\",\n        \"cep\": \"95780000\"\n    }\n}"
+            },
+            {
+              "name": "Erro usuário não autenticado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "1"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "WWW-Authenticate",
+                  "value": "Bearer error=\"invalid_token\", error_description=\"An error occurred while attempting to decode the Jwt: Jwt expired at 2026-08-19T18:14:32Z\", error_uri=\"https://tools.ietf.org/html/rfc6750#section-3.1\", resource_metadata=\"http://localhost:8080/.well-known/oauth-protected-resource\""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 12:40:31 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "Erro usuário não encontrado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/9",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "9"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 12:42:00 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Recurso não encontrado.\",\n    \"horarioErro\": \"21/08/2026 09:42:00\",\n    \"messagemErro\": \"Usuario inexistente\",\n    \"path\": \"/v1/usuarios/9\",\n    \"status\": 404\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET Busca por nome - Caso sucesso",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios?nome=an&page=0&size=5&sort=nome,asc",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "an"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "nome,asc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sucesso filtro nome",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios?nome=an&page=0&size=5&sort=nome,asc",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ],
+                  "query": [
+                    {
+                      "key": "nome",
+                      "value": "an"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "nome,asc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:18:58 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"nome\": \"Ricardo Andrade\",\n            \"email\": \"ricardo.andrade@email.com\",\n            \"login\": \"ricardo.andrade\",\n            \"tipoUsuario\": \"DONO\",\n            \"dataUltimaAlteracao\": \"18/08/2026 18:12:50\",\n            \"endereco\": {\n                \"logradouro\": \"Rua das Flores\",\n                \"numero\": \"35\",\n                \"cidade\": \"Maringá\",\n                \"estado\": \"PR\",\n                \"cep\": \"87020000\"\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": true,\n    \"number\": 0,\n    \"numberOfElements\": 1,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 5,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"unpaged\": false\n    },\n    \"size\": 5,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1\n}"
+            },
+            {
+              "name": "Sucesso paginação sem filtro",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios?page=0&size=2",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:20:17 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"nome\": \"Betina\",\n            \"email\": \"betina.somer@gmail.com\",\n            \"login\": \"betina.somer@gmail.com\",\n            \"tipoUsuario\": \"CLIENTE\",\n            \"dataUltimaAlteracao\": \"14/08/2026 14:19:36\",\n            \"endereco\": {\n                \"logradouro\": \"Estrada Selma Wallauer\",\n                \"numero\": \"1300\",\n                \"cidade\": \"Montenegro\",\n                \"estado\": \"RS\",\n                \"cep\": \"95780000\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"nome\": \"Betina Somer\",\n            \"email\": \"betina@email.com\",\n            \"login\": \"betinas\",\n            \"tipoUsuario\": \"CLIENTE\",\n            \"dataUltimaAlteracao\": \"18/08/2026 18:14:43\",\n            \"endereco\": {\n                \"logradouro\": \"Rua Ramiro\",\n                \"numero\": \"88\",\n                \"cidade\": \"São Paulo\",\n                \"estado\": \"SP\",\n                \"cep\": \"11110000\"\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": false,\n    \"number\": 0,\n    \"numberOfElements\": 2,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"unpaged\": false\n    },\n    \"size\": 2,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"totalElements\": 3,\n    \"totalPages\": 2\n}"
+            },
+            {
+              "name": "Sucesso ordenação por dataUltimaAlteracao",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios?page=0&size=2&sort=dataUltimaAlteracao,desc",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ],
+                  "query": [
+                    {
+                      "key": "nome",
+                      "value": "an",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "2"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "dataUltimaAlteracao,desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:46:17 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"id\": 3,\n            \"nome\": \"Betina Somer\",\n            \"email\": \"betina@email.com\",\n            \"login\": \"betinas\",\n            \"tipoUsuario\": \"CLIENTE\",\n            \"dataUltimaAlteracao\": \"18/08/2026 18:14:43\",\n            \"endereco\": {\n                \"logradouro\": \"Rua Ramiro\",\n                \"numero\": \"88\",\n                \"cidade\": \"São Paulo\",\n                \"estado\": \"SP\",\n                \"cep\": \"11110000\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"nome\": \"Ricardo Andrade\",\n            \"email\": \"ricardo.andrade@email.com\",\n            \"login\": \"ricardo.andrade\",\n            \"tipoUsuario\": \"DONO\",\n            \"dataUltimaAlteracao\": \"18/08/2026 18:12:50\",\n            \"endereco\": {\n                \"logradouro\": \"Rua das Flores\",\n                \"numero\": \"35\",\n                \"cidade\": \"Maringá\",\n                \"estado\": \"PR\",\n                \"cep\": \"87020000\"\n            }\n        }\n    ],\n    \"empty\": false,\n    \"first\": true,\n    \"last\": false,\n    \"number\": 0,\n    \"numberOfElements\": 2,\n    \"pageable\": {\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"paged\": true,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"unpaged\": false\n    },\n    \"size\": 2,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"totalElements\": 3,\n    \"totalPages\": 2\n}"
+            },
+            {
+              "name": "Erro sem autenticação",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios?nome=an&page=0&size=5&sort=nome,asc",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ],
+                  "query": [
+                    {
+                      "key": "nome",
+                      "value": "an"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "nome,asc"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "WWW-Authenticate",
+                  "value": "Bearer error=\"invalid_token\", error_description=\"An error occurred while attempting to decode the Jwt: Signed JWT rejected: Invalid signature\", error_uri=\"https://tools.ietf.org/html/rfc6750#section-3.1\", resource_metadata=\"http://localhost:8080/.well-known/oauth-protected-resource\""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:23:01 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "DELETE Usuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/1",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Exemplo usuário não encontrado",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/9",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "9"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 19:02:10 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Recurso não encontrado.\",\n    \"horarioErro\": \"18/08/2026 16:02:10\",\n    \"messagemErro\": \"Usuario inexistente\",\n    \"path\": \"/v1/usuarios/9\",\n    \"status\": 404\n}"
+            },
+            {
+              "name": "Sucesso exclusão usuário",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/3",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "3"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 19 Aug 2026 14:13:19 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "POST Usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"nome\": \"Maria Pereira\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"senha\": \"77778888\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"48\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sucesso cadastro Dono",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Ricardo Andrade\",\n  \"email\": \"Ricardo.Andrade@email.com\",\n  \"login\": \"ricardo.andrade\",\n  \"senha\": \"12345\",\n  \"tipoUsuario\": 1,\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores\",\n    \"numero\": \"35\",\n    \"cidade\": \"Maringá\",\n    \"estado\": \"PR\",\n    \"cep\": \"87020000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Location",
+                  "value": "http://localhost:8080/v1/usuarios/11"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 03 Aug 2026 17:28:45 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"nome\": \"Ricardo Andrade\",\n    \"email\": \"ricardo.andrade@email.com\",\n    \"login\": \"ricardo.andrade\",\n    \"tipoUsuario\": \"DONO\",\n    \"dataUltimaAlteracao\": \"03/08/2026 14:28:45\",\n    \"endereco\": {\n        \"logradouro\": \"Rua das Flores\",\n        \"numero\": \"35\",\n        \"cidade\": \"Maringá\",\n        \"estado\": \"PR\",\n        \"cep\": \"87020000\"\n    }\n}"
+            },
+            {
+              "name": "Sucesso cadastro Cliente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Betina Somer\",\n  \"email\": \"betina@email.com\",\n  \"login\": \"betinas\",\n  \"senha\": \"012345\",\n  \"tipoUsuario\": 2,\n  \"endereco\": {\n    \"logradouro\": \"Rua Ramiro\",\n    \"numero\": \"88\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"11110000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Location",
+                  "value": "http://localhost:8080/v1/usuarios/3"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:14:45 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"nome\": \"Betina Somer\",\n    \"email\": \"betina@email.com\",\n    \"login\": \"betinas\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"dataUltimaAlteracao\": \"18/08/2026 18:14:43\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Ramiro\",\n        \"numero\": \"88\",\n        \"cidade\": \"São Paulo\",\n        \"estado\": \"SP\",\n        \"cep\": \"11110000\"\n    }\n}"
+            },
+            {
+              "name": "Erro campos obrigatórios faltando",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"\",\n    \"email\": null,\n    \"login\": \"\",\n    \"senha\": null,\n    \"tipoUsuario\": null,\n    \"endereco\": {\n        \"logradouro\": \"\",\n        \"numero\": null,\n        \"cidade\": \"\",\n        \"estado\": null,\n        \"cep\": \"\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 17 Aug 2026 19:09:26 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"horarioErro\": \"17/08/2026 16:09:25\",\n    \"status\": 422,\n    \"erro\": \"Dados invalídos.\",\n    \"path\": \"/v1/usuarios\",\n    \"erros\": [\n        {\n            \"nomeCampo\": \"tipoUsuario\",\n            \"mensagem\": \"O tipo usuário é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"email\",\n            \"mensagem\": \"O e-mail é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"senha\",\n            \"mensagem\": \"A senha é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"endereco.numero\",\n            \"mensagem\": \"O número é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"endereco.estado\",\n            \"mensagem\": \"O estado é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"endereco.cidade\",\n            \"mensagem\": \"A cidade deve conter entre 5 e 100 caracteres\"\n        },\n        {\n            \"nomeCampo\": \"login\",\n            \"mensagem\": \"O login é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"nome\",\n            \"mensagem\": \"O nome é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"endereco.logradouro\",\n            \"mensagem\": \"O logradouro é obrigatório.\"\n        },\n        {\n            \"nomeCampo\": \"endereco.cep\",\n            \"mensagem\": \"O cep deve conter exatamente 8 caracteres\"\n        }\n    ],\n    \"messagemErro\": null\n}"
+            },
+            {
+              "name": "Erro cep inválido",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Betina Somer\",\n  \"email\": \"betina@email.com\",\n  \"login\": \"betinas\",\n  \"senha\": \"012345\",\n  \"tipoUsuario\": 2,\n  \"endereco\": {\n    \"logradouro\": \"Rua Ramiro\",\n    \"numero\": \"88\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"1110000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:16:18 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"horarioErro\": \"18/08/2026 15:16:18\",\n    \"status\": 422,\n    \"erro\": \"Dados invalídos.\",\n    \"path\": \"/v1/usuarios\",\n    \"erros\": [\n        {\n            \"nomeCampo\": \"endereco.cep\",\n            \"mensagem\": \"O cep deve ter apenas numeros\"\n        }\n    ],\n    \"messagemErro\": null\n}"
+            },
+            {
+              "name": "Erro tipo usuário inválido",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Betina Somer\",\n  \"email\": \"betina@email.com\",\n  \"login\": \"betinas\",\n  \"senha\": \"012345\",\n  \"tipoUsuario\": 3,\n  \"endereco\": {\n    \"logradouro\": \"Rua Ramiro\",\n    \"numero\": \"88\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"11110000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:16:55 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"horarioErro\": \"18/08/2026 15:16:55\",\n    \"status\": 422,\n    \"erro\": \"Dados invalídos.\",\n    \"path\": \"/v1/usuarios\",\n    \"erros\": [\n        {\n            \"nomeCampo\": \"tipoUsuario\",\n            \"mensagem\": \"Tipo de usuário inválido\"\n        }\n    ],\n    \"messagemErro\": null\n}"
+            },
+            {
+              "name": "Erro email duplicado",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Betina Somer\",\n  \"email\": \"betina@email.com\",\n  \"login\": \"betinas\",\n  \"senha\": \"012345\",\n  \"tipoUsuario\": 2,\n  \"endereco\": {\n    \"logradouro\": \"Rua Ramiro\",\n    \"numero\": \"88\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"11110000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:17:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Regra de Negócios.\",\n    \"horarioErro\": \"18/08/2026 15:17:41\",\n    \"messagemErro\": \"O e-mail informado já está cadastrado.\",\n    \"path\": \"/v1/usuarios\",\n    \"status\": 400\n}"
+            }
+          ]
+        },
+        {
+          "name": "PUT Usuario - Dados cadastrais",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"nome\": \"Maria Pereira dos Santos\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "4"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Erro tipo de usuário inválido",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"Maria Pereira\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 3,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"88\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "4"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:31:32 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"horarioErro\": \"21/08/2026 10:31:32\",\n    \"status\": 422,\n    \"erro\": \"Dados inválidos.\",\n    \"path\": \"/v1/usuarios/4\",\n    \"erros\": [\n        {\n            \"nomeCampo\": \"tipoUsuario\",\n            \"mensagem\": \"Tipo de usuário inválido\"\n        }\n    ],\n    \"messagemErro\": null\n}"
+            },
+            {
+              "name": "Erro dados atuais",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"Maria Pereira\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"88\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "4"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:31:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Regra de Negócios.\",\n    \"horarioErro\": \"21/08/2026 10:31:56\",\n    \"messagemErro\": \"Não há dados alterados, ou as informações enviadas já são as atuais.\",\n    \"path\": \"/v1/usuarios/4\",\n    \"status\": 400\n}"
+            },
+            {
+              "name": "Erro email cadastrado outro usuário",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"Maria Pereira dos Santos\",\n    \"email\": \"betina.Somer@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "4"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:34:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Regra de Negócios.\",\n    \"horarioErro\": \"21/08/2026 10:34:51\",\n    \"messagemErro\": \"O e-mail já cadastrado para outro usuário.\",\n    \"path\": \"/v1/usuarios/4\",\n    \"status\": 400\n}"
+            },
+            {
+              "name": "Sucesso alteração endereço",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"Maria Pereira\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "4"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:32:34 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 4,\n    \"nome\": \"Maria Pereira\",\n    \"email\": \"maria.pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"dataUltimaAlteracao\": \"21/08/2026 13:32:34\",\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}"
+            },
+            {
+              "name": "Sucesso alteração nome",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"nome\": \"Maria Pereira dos Santos\",\n    \"email\": \"Maria.Pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": 2,\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/4",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "4"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:33:24 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 4,\n    \"nome\": \"Maria Pereira dos Santos\",\n    \"email\": \"maria.pereira@gmail.com\",\n    \"login\": \"Maria.Pereira\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"dataUltimaAlteracao\": \"21/08/2026 13:33:24\",\n    \"endereco\": {\n        \"logradouro\": \"Rua das Bandeiras\",\n        \"numero\": \"878\",\n        \"cidade\": \"Santo Andre\",\n        \"estado\": \"SP\",\n        \"cep\": \"98045000\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PUT Usuario - Alterar Senha",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{   \"senhaAtual\": \"12345\",\n    \"senhaNova\": \"54321\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/v1/usuarios/atualiza-senha/2",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "v1",
+                "usuarios",
+                "atualiza-senha",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Erro usuário não encontrado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"senhaAtual\": \"12345\",\n    \"senhaNova\": \"54321\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/atualiza-senha/9",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "atualiza-senha",
+                    "9"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:50:43 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Recurso não encontrado.\",\n    \"horarioErro\": \"21/08/2026 10:50:43\",\n    \"messagemErro\": \"Usuario inexistente\",\n    \"path\": \"/v1/usuarios/atualiza-senha/9\",\n    \"status\": 404\n}"
+            },
+            {
+              "name": "Erro senha atual incorreta",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"senhaAtual\": \"12345\",\n    \"senhaNova\": \"54321\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/atualiza-senha/1",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "atualiza-senha",
+                    "1"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:52:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Regra de Negócios.\",\n    \"horarioErro\": \"21/08/2026 10:52:27\",\n    \"messagemErro\": \"Senha atual inválida.\",\n    \"path\": \"/v1/usuarios/atualiza-senha/1\",\n    \"status\": 400\n}"
+            },
+            {
+              "name": "Sucesso alteração senha",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{   \"senhaAtual\": \"12345\",\n    \"senhaNova\": \"54321\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/v1/usuarios/atualiza-senha/2",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "usuarios",
+                    "atualiza-senha",
+                    "2"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 21 Aug 2026 13:54:37 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Converte a resposta recebida para JSON",
+                  "const response = pm.response.json();",
+                  "// Verifica se o token existe na resposta",
+                  "if (response.token) {",
+                  "    // Salva o token na variável de ambiente/coleção com o nome \"jwt_token\"",
+                  "    pm.environment.set(\"JWT_TOKEN\", response.token);",
+                  "    console.log(\"Token JWT salvo com sucesso!\");",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"ricardo.andrade@email.com\",\n    \"senha\": \"12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{LOCAL_HOST}}/login",
+              "host": [
+                "{{LOCAL_HOST}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sucesso login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"betina@email.com\",\n    \"senha\": \"012345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/login",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:35:38 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"token\": \"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0ZWNoLWNoYWxsZW5nZS1kZWxpdmVyeSIsInN1YiI6ImJldGluYXMiLCJyb2xlIjoiQ0xJRU5URSIsImV4cCI6MTc4NzA3ODczOCwiaWF0IjoxNzg3MDc4MTM4LCJlbWFpbCI6ImJldGluYUBlbWFpbC5jb20ifQ.fnSBDqOoAcJT7LZSKG8LLJBiXRgIESxQgGj-pXr3NKxJ8uHoOdjTN7FfyhG5rIUDneNZu2YdCw7t-lX0yaDgfF9vINY-zDm4QVkKyG6UyOdtuV8hDUHNdweBgmUpa_xNPVDp4sqHEe2qsSHApU5wtNmyonk-9uRHF4Dv2nsNtPysk-Um13hMksKARUNDf-lsz-dWu_SUp02bi7TWPNC-G3tDeWZosYTsFSx6XatL26ksL6wCdFcAPTjBpjsNAlUqroM9yMrxBe7mevCZE-BMSH6q8hLJWJIKQOWMpLeWrTTjDHaoFpBx9umwebnLYhX0HNjSOQPzNIzO1u6nlXy1RA\",\n    \"expiraEm\": 600\n}"
+            },
+            {
+              "name": "Erro usuario/senha invalido",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"invalido@email.com\",\n    \"senha\": \"012345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{LOCAL_HOST}}/login",
+                  "host": [
+                    "{{LOCAL_HOST}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 18 Aug 2026 18:48:25 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"erro\": \"Problemas de Autenticação\",\n    \"horarioErro\": \"18/08/2026 15:48:25\",\n    \"messagemErro\": \"Usuário ou senha inválidos.\",\n    \"path\": \"/login\",\n    \"status\": 401\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
